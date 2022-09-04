@@ -2,9 +2,9 @@ import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { ThemeProvider } from "styled-components/native";
-import { SignIn } from "./src/pages/SignIn/SignIn";
+import { AppRoutes } from "./src/routes/AppRoutes";
 import mainTheme from "./src/styles/themes/main";
 
 export default function App() {
@@ -34,10 +34,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={mainTheme}>
-      <View style={styles.container}>
-        <SignIn />
-        <StatusBar style="light" />
-      </View>
+      <AppRoutes />
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

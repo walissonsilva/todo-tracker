@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-export function SignIn() {
+export function SignInScreen() {
   return (
     <S.Container>
       <S.AppTitle>Todo Tracker</S.AppTitle>

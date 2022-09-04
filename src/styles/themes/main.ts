@@ -1,8 +1,10 @@
+// https://coolors.co/464655-4e4187-f7fff6-149911-1efc1e
+
 export default {
   colors: {
-    primary: "#00F0B5",
+    primary: "#149911",
     "primary-variant": "#00c091",
-    secondary: "#9055A2",
+    secondary: "#4E4187",
     "secondary-variant": "#b286c0",
 
     success: "#12A454",
@@ -14,7 +16,7 @@ export default {
     shape: "#FFFFFF",
     title: "#363F5F",
 
-    "text-color": "#F4F4ED",
+    "text-color": "#F7FFF6",
     white: "#FFFFFF",
     black: "#000000",
 
