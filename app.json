@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "todo-tracker",
+    "slug": "todo-tracker",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
