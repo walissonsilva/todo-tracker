@@ -20,7 +20,7 @@ export default {
     white: "#FFFFFF",
     black: "#000000",
 
-    background: "#252525",
+    background: "#0E0E10",
   },
   fonts: {
     light: "Cairo-Light",

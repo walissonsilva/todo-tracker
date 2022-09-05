@@ -14,7 +14,7 @@ export const Container = styled.View`
 
 export const WelcomeMessage = styled.Text`
   font-size: ${RFValue(24)}px;
-  font-family: ${({ theme }) => theme.fonts.bold};
+  font-family: ${({ theme }) => theme.fonts.medium};
   color: ${({ theme }) => theme.colors["text-color"]};
 `;
 
