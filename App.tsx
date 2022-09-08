@@ -3,6 +3,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 import { AppRoutes } from "./src/routes/AppRoutes";
 import mainTheme from "./src/styles/themes/main";
@@ -16,6 +17,7 @@ export default function App() {
 
       await Font.loadAsync({
         "Cairo-Bold": require("./src/assets/fonts/Cairo-Bold.ttf"),
+        "Cairo-SemiBold": require("./src/assets/fonts/Cairo-SemiBold.ttf"),
         "Cairo-Medium": require("./src/assets/fonts/Cairo-Medium.ttf"),
         "Cairo-Regular": require("./src/assets/fonts/Cairo-Regular.ttf"),
         "Cairo-Light": require("./src/assets/fonts/Cairo-Light.ttf"),
@@ -34,7 +36,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={mainTheme}>
-      <AppRoutes />
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <AppRoutes />
+      </GestureHandlerRootView>
       <StatusBar style="light" />
     </ThemeProvider>
   );

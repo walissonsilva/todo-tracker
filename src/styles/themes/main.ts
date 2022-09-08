@@ -2,9 +2,9 @@
 
 export default {
   colors: {
-    primary: "#149911",
+    primary: "#6050dc",
     "primary-variant": "#00c091",
-    secondary: "#4E4187",
+    secondary: "#16DB93",
     "secondary-variant": "#b286c0",
 
     success: "#12A454",
@@ -16,16 +16,20 @@ export default {
     shape: "#FFFFFF",
     title: "#363F5F",
 
-    "text-color": "#F7FFF6",
+    "text-color": "#0E0E10",
+    "text-color-ligthen": "#333333",
+    "text-color-inverted": "#F5F5F5",
+    "text-color-inverted-lighten": "#D5D5D5",
     white: "#FFFFFF",
     black: "#000000",
 
-    background: "#0E0E10",
+    background: "#F5F5F5",
   },
   fonts: {
     light: "Cairo-Light",
     regular: "Cairo-Regular",
     medium: "Cairo-Medium",
+    semi_bold: "Cairo-SemiBold",
     bold: "Cairo-Bold",
   },
 };

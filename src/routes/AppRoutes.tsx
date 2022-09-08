@@ -28,7 +28,7 @@ export function AppRoutes() {
         }}
       >
         <Screen
-          name="Today"
+          name="Hoje"
           component={TodayScreen}
           options={{
             tabBarActiveTintColor: theme.colors.primary,
@@ -39,7 +39,7 @@ export function AppRoutes() {
           }}
         />
         <Screen
-          name="Upcoming"
+          name="Próximas"
           component={TodayScreen}
           options={{
             tabBarActiveTintColor: theme.colors.primary,
@@ -50,7 +50,18 @@ export function AppRoutes() {
           }}
         />
         <Screen
-          name="Stats"
+          name="Busca"
+          component={TodayScreen}
+          options={{
+            tabBarActiveTintColor: theme.colors.primary,
+            headerShown: false,
+            tabBarIcon: (props) => (
+              <Feather name="search" {...props} size={props.size - 5} />
+            ),
+          }}
+        />
+        <Screen
+          name="Estatísticas"
           component={TodayScreen}
           options={{
             tabBarActiveTintColor: theme.colors.primary,
@@ -61,7 +72,7 @@ export function AppRoutes() {
           }}
         />
         <Screen
-          name="Profile"
+          name="Perfil"
           component={TodayScreen}
           options={{
             tabBarActiveTintColor: theme.colors.primary,
