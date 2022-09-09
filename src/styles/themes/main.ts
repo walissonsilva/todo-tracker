@@ -2,10 +2,12 @@
 
 export default {
   colors: {
-    primary: "#6050dc",
-    "primary-variant": "#00c091",
-    secondary: "#16DB93",
+    primary: "#2541B2",
+    "primary-darken": "#03256C",
+    "primary-ligthen": "#1768AC",
+    secondary: "#20A39E",
     "secondary-variant": "#b286c0",
+    tertiary: "#EFCA08",
 
     success: "#12A454",
     success_light: "rgba(18, 164, 84, 0.5)",
@@ -19,11 +21,11 @@ export default {
     "text-color": "#0E0E10",
     "text-color-ligthen": "#333333",
     "text-color-inverted": "#F5F5F5",
-    "text-color-inverted-lighten": "#D5D5D5",
+    "text-color-inverted-lighten": "#C5C5C5",
     white: "#FFFFFF",
     black: "#000000",
 
-    background: "#F5F5F5",
+    background: "#F9F9F9",
   },
   fonts: {
     light: "Cairo-Light",

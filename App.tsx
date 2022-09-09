@@ -38,8 +38,8 @@ export default function App() {
     <ThemeProvider theme={mainTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <AppRoutes />
+        <StatusBar style="light" />
       </GestureHandlerRootView>
-      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

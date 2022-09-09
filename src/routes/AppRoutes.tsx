@@ -6,6 +6,8 @@ import { TodayScreen } from "../pages/Today/TodayScreen";
 import { RFValue } from "react-native-responsive-fontsize";
 import Feather from "react-native-vector-icons/Feather";
 import { useTheme } from "styled-components";
+import { AddTaskButton } from "../components/AddTaskButton";
+import { RegisterScreen } from "../pages/Register";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -50,14 +52,28 @@ export function AppRoutes() {
           }}
         />
         <Screen
-          name="Busca"
-          component={TodayScreen}
+          name="Adicionar"
+          component={RegisterScreen}
           options={{
+            tabBarLabelStyle: {
+              display: "none",
+            },
             tabBarActiveTintColor: theme.colors.primary,
             headerShown: false,
             tabBarIcon: (props) => (
-              <Feather name="search" {...props} size={props.size - 5} />
+              <AddTaskButton>
+                <Feather
+                  name="plus"
+                  {...props}
+                  color={theme.colors["text-color-inverted"]}
+                />
+              </AddTaskButton>
             ),
+            tabBarIconStyle: {
+              position: "relative",
+              bottom: -10,
+              zIndex: 1,
+            },
           }}
         />
         <Screen

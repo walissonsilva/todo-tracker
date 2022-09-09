@@ -26,23 +26,7 @@ export const TodayTitle = styled.Text`
   color: ${({ theme }) => theme.colors["text-color"]};
 `;
 
-export const AddTask = styled(RectButton)`
-  font-family: ${({ theme }) => theme.fonts.bold};
-  background-color: ${({ theme }) => theme.colors["secondary"]};
-  border-radius: 99999px;
-  padding: 7px;
 
-  position: absolute;
-  bottom: ${RFValue(15)}px;
-  right: ${RFValue(15)}px;
-
-  width: ${RFValue(44)}px;
-  height: ${RFValue(44)}px;
-
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-`;
 
 export const AddIcon = styled(Feather)`
   color: ${({ theme }) => theme.colors.white};
@@ -74,6 +58,7 @@ export const TodayTodoContent = styled(RectButton)`
 
 export const TodoTitle = styled.Text`
   font-size: ${RFValue(15)}px;
+  color: ${({ theme }) => theme.colors["text-color"]};
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 

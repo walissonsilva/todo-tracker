@@ -1,16 +1,8 @@
-import React, { useState } from "react";
-import { TaskModal } from "../../components/TaskModal/TaskModal";
+import React from "react";
 import * as S from "./styles";
 import { Header } from "./TodayHeader/TodayHeader";
 
 export function TodayScreen() {
-  const [isAddTaskModalOpen, setIsAddTaskModalOpen] = useState(false);
-
-  function toggleAddTaskModal() {
-    setIsAddTaskModalOpen(!isAddTaskModalOpen);
-    console.log("Clicou");
-  }
-
   return (
     <S.Container>
       <Header />
@@ -39,17 +31,7 @@ export function TodayScreen() {
             </>
           ))}
         </S.TodayTodoContainer>
-
-        <TaskModal
-          title=""
-          toggleModal={toggleAddTaskModal}
-          visible={isAddTaskModalOpen}
-        />
       </S.PageContent>
-
-      <S.AddTask onPress={toggleAddTaskModal}>
-        <S.AddIcon name="plus" />
-      </S.AddTask>
     </S.Container>
   );
 }
