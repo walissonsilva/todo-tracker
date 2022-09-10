@@ -1,9 +1,10 @@
 import React from "react";
 import { TextInputProps } from "react-native";
+import { Calendar } from "react-native-calendars";
 
 import * as S from "./styles";
 
-interface InputProps extends TextInputProps {
+export interface InputProps extends TextInputProps {
   label: string;
   error?: string;
 }

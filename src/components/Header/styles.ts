@@ -23,5 +23,5 @@ export const IconWrapper = styled.TouchableOpacity`
 
 export const Icon = styled(Feather)`
   color: ${({ theme }) => theme.colors["text-color-inverted-lighten"]};
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFValue(16)}px;
 `;

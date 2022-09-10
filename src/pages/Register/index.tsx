@@ -9,8 +9,8 @@ import {
 } from "react-hook-form";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
+import { InputDate } from "../../components/Form/InputDate";
 import { Header } from "../../components/Header";
-import { TaskModal } from "../../components/TaskModal";
 import { taskSchema } from "./schema";
 
 import * as S from "./styles";
@@ -78,12 +78,13 @@ export function RegisterScreen() {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <Input
+              <InputDate
                 label="Data"
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
                 error={errors.date?.message}
+                editable={false}
               />
             )}
             name="date"

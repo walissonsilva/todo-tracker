@@ -10,7 +10,12 @@ export interface ButtonProps extends TouchableOpacityProps {
 
 export function Button({ children, type = "default", ...rest }: ButtonProps) {
   return (
-    <S.Container onPress={rest.onPress} type={type} {...rest}>
+    <S.Container
+      onPress={rest.onPress}
+      type={type}
+      activeOpacity={0.7}
+      {...rest}
+    >
       <S.ButtonText type={type}>{children}</S.ButtonText>
     </S.Container>
   );
