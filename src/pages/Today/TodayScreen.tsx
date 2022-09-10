@@ -1,27 +1,9 @@
-import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React from "react";
+import { AddTaskButton } from "../../components/AddTaskButton";
 import * as S from "./styles";
 import { Header } from "./TodayHeader/TodayHeader";
 
 export function TodayScreen() {
-  const navigation = useNavigation();
-  const tabBarHeight = useBottomTabBarHeight();
-
-  useFocusEffect(() => {
-    const state = navigation.getState();
-
-    if (state.history) {
-      const isAddTaskScreen = state.history.some((historyItem: any) =>
-        historyItem.key.includes("Adicionar")
-      );
-
-      if (isAddTaskScreen) {
-        navigation.navigate("RegisterModal" as never);
-      }
-    }
-  });
-
   return (
     <S.Container>
       <Header />
@@ -46,6 +28,8 @@ export function TodayScreen() {
             ))}
           </S.TodayListWrapper>
         </S.TodayTodoContainer>
+
+        <AddTaskButton />
       </S.PageContent>
     </S.Container>
   );

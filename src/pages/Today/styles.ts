@@ -12,6 +12,7 @@ export const Container = styled.View`
 
 export const PageContent = styled.View`
   padding: 22px 30px;
+  flex: 1;
 `;
 
 export const TodayWrapper = styled.View`
@@ -32,11 +33,10 @@ export const AddIcon = styled(Feather)`
 `;
 
 export const TodayTodoContainer = styled.ScrollView`
-  margin: 10px 0;
+  margin: 10px 0 0;
 `;
 
 export const TodayListWrapper = styled.View`
-  padding-bottom: ${RFValue(150)}px;
   height: 100%;
 `;
 

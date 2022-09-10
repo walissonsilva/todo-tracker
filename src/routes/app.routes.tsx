@@ -7,9 +7,8 @@ import { TodayScreen } from "../pages/Today/TodayScreen";
 import { RFValue } from "react-native-responsive-fontsize";
 import Feather from "react-native-vector-icons/Feather";
 import { useTheme } from "styled-components";
-import { AddTaskButton } from "../components/AddTaskButton";
-import { RegisterScreen } from "../pages/Register";
 import { ProfileScreen } from "../pages/Profile";
+import { RegisterScreen } from "../pages/Register";
 import { StatsScreen } from "../pages/Stats";
 import { UpcomingScreen } from "../pages/Upcoming";
 
@@ -56,31 +55,6 @@ export function AppTabs() {
         }}
       />
       <Screen
-        name="Adicionar"
-        component={TodayScreen}
-        options={{
-          tabBarLabelStyle: {
-            display: "none",
-          },
-          tabBarActiveTintColor: theme.colors.primary,
-          headerShown: false,
-          tabBarIcon: (props) => (
-            <AddTaskButton>
-              <Feather
-                name="plus"
-                {...props}
-                color={theme.colors["text-color-inverted"]}
-              />
-            </AddTaskButton>
-          ),
-          tabBarIconStyle: {
-            position: "relative",
-            bottom: -10,
-            zIndex: 1,
-          },
-        }}
-      />
-      <Screen
         name="Estatísticas"
         component={StatsScreen}
         options={{
@@ -113,7 +87,6 @@ export function AppRoutes() {
         screenOptions={{
           headerShown: false,
           animation: "slide_from_bottom",
-          animationDuration: 10,
         }}
       >
         <AppStack.Group>
