@@ -9,6 +9,9 @@ import Feather from "react-native-vector-icons/Feather";
 import { useTheme } from "styled-components";
 import { AddTaskButton } from "../components/AddTaskButton";
 import { RegisterScreen } from "../pages/Register";
+import { ProfileScreen } from "../pages/Profile";
+import { StatsScreen } from "../pages/Stats";
+import { UpcomingScreen } from "../pages/Upcoming";
 
 const { Navigator, Screen } = createBottomTabNavigator();
 const AppStack = createNativeStackNavigator();
@@ -43,7 +46,7 @@ export function AppTabs() {
       />
       <Screen
         name="Próximas"
-        component={TodayScreen}
+        component={UpcomingScreen}
         options={{
           tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
@@ -79,7 +82,7 @@ export function AppTabs() {
       />
       <Screen
         name="Estatísticas"
-        component={TodayScreen}
+        component={StatsScreen}
         options={{
           tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
@@ -90,7 +93,7 @@ export function AppTabs() {
       />
       <Screen
         name="Perfil"
-        component={TodayScreen}
+        component={ProfileScreen}
         options={{
           tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,

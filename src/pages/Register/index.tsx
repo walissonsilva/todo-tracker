@@ -84,7 +84,6 @@ export function RegisterScreen() {
                 onChangeText={onChange}
                 value={value}
                 error={errors.date?.message}
-                editable={false}
               />
             )}
             name="date"

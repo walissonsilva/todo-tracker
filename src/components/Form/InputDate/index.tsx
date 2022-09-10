@@ -29,7 +29,7 @@ export function InputDate(props: InputDateProps) {
 
   return (
     <S.Container onPress={toggleModal} activeOpacity={0.7}>
-      <Input {...props} value={formattedDateSelected} />
+      <Input {...props} value={formattedDateSelected} editable={false} />
 
       <Modal visible={isModalSelectDateOpen}>
         <Header
