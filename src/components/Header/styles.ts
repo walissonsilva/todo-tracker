@@ -4,17 +4,17 @@ import styled from "styled-components/native";
 import Feather from "react-native-vector-icons/Feather";
 
 export const Container = styled.View`
-  height: ${RFPercentage(8)}px;
+  height: ${RFPercentage(15)}px;
   background-color: ${({ theme }) => theme.colors.primary};
   flex-direction: row;
   align-items: center;
-  padding: 0 30px;
+  padding: 30px 30px 0;
 `;
 
 export const Title = styled.Text`
   color: ${({ theme }) => theme.colors["text-color-inverted"]};
   font-size: ${RFValue(20)}px;
-  font-family: ${({ theme }) => theme.fonts.semi_bold};
+  font-family: ${({ theme }) => theme.fonts.bold};
 `;
 
 export const IconWrapper = styled.TouchableOpacity`

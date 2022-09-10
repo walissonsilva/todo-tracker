@@ -26,16 +26,18 @@ export const TodayTitle = styled.Text`
   color: ${({ theme }) => theme.colors["text-color"]};
 `;
 
-
-
 export const AddIcon = styled(Feather)`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${RFValue(20)}px;
 `;
 
 export const TodayTodoContainer = styled.ScrollView`
-  margin-top: 10px;
-  margin-bottom: ${RFValue(50)}px;
+  margin: 10px 0;
+`;
+
+export const TodayListWrapper = styled.View`
+  padding-bottom: ${RFValue(150)}px;
+  height: 100%;
 `;
 
 export const TodayTodoItem = styled.View`
