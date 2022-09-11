@@ -4,18 +4,19 @@ import * as S from "./styles";
 
 interface HeaderProps {
   title: string;
-  goBackIcon?: {
-    show: boolean;
+  icon?: {
+    type: "back" | "close";
     action: () => void;
   };
+  onTopOfScreen?: boolean;
 }
 
-export function Header({ title, goBackIcon }: HeaderProps) {
+export function Header({ title, icon, onTopOfScreen = true }: HeaderProps) {
   return (
-    <S.Container>
-      {goBackIcon && goBackIcon.show && (
-        <S.IconWrapper onPress={goBackIcon.action}>
-          <S.Icon name="arrow-left" />
+    <S.Container onTopOfScreen={onTopOfScreen}>
+      {icon && (
+        <S.IconWrapper onPress={icon.action}>
+          <S.Icon name={icon.type === "back" ? "arrow-left" : "x"} />
         </S.IconWrapper>
       )}
 

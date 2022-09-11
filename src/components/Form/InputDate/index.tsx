@@ -38,53 +38,44 @@ export function InputDate({
     <S.Container onPress={toggleModal} activeOpacity={0.7}>
       <Input {...props} value={formattedDateSelected} editable={false} />
 
-      <Modal
-        presentationStyle="overFullScreen"
-        transparent
-        visible={false}
-        statusBarTranslucent
-        removeClippedSubviews
-      ></Modal>
-
       <S.StyledModal
         visible={isModalSelectDateOpen}
-        animationType="slide"
+        animationType="fade"
         onRequestClose={toggleModal}
         presentationStyle="overFullScreen"
         transparent
-        removeClippedSubviews
-        style={{
-          backdropFilter: "blur(2px)",
-        }}
       >
-        <S.ModalContent>
-          <Header
-            title="Selecione uma data"
-            goBackIcon={{ show: true, action: toggleModal }}
-          />
-          <S.CalendarWrapper>
-            <Calendar
-              theme={{
-                calendarBackground: theme.colors["background-variant"],
-                selectedDayTextColor: theme.colors["text-color"],
-                selectedDayBackgroundColor: theme.colors["primary"],
-                monthTextColor: theme.colors["text-color"],
-                dayTextColor: theme.colors["text-color"],
-                todayTextColor: theme.colors["primary-variant"],
-                arrowColor: theme.colors["text-color"],
-              }}
-              focusable
-              markedDates={{
-                [selectedDate]: { selected: true },
-              }}
-              onDayPress={(date) => onChangeDate(date.dateString)}
+        <S.ModalOverlay>
+          <S.ModalContent>
+            <Header
+              title="Selecione uma data"
+              icon={{ type: "close", action: toggleModal }}
+              onTopOfScreen={false}
             />
-          </S.CalendarWrapper>
+            <S.CalendarWrapper>
+              <Calendar
+                theme={{
+                  calendarBackground: theme.colors["background-variant"],
+                  selectedDayTextColor: theme.colors["white"],
+                  selectedDayBackgroundColor: theme.colors["primary"],
+                  monthTextColor: theme.colors["text-color"],
+                  dayTextColor: theme.colors["text-color"],
+                  todayTextColor: theme.colors["primary-variant"],
+                  arrowColor: theme.colors["text-color"],
+                }}
+                focusable
+                markedDates={{
+                  [selectedDate]: { selected: true },
+                }}
+                onDayPress={(date) => onChangeDate(date.dateString)}
+              />
+            </S.CalendarWrapper>
 
-          <S.ButtonWrapper>
-            <Button onPress={toggleModal}>Confirmar</Button>
-          </S.ButtonWrapper>
-        </S.ModalContent>
+            <S.ButtonWrapper>
+              <Button onPress={toggleModal}>Confirmar</Button>
+            </S.ButtonWrapper>
+          </S.ModalContent>
+        </S.ModalOverlay>
       </S.StyledModal>
     </S.Container>
   );

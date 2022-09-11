@@ -37,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={mainTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <AppRoutes />
         <StatusBar style="light" />

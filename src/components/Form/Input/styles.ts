@@ -26,6 +26,6 @@ export const ErrorMessage = styled.Text`
   color: ${({ theme }) => theme.colors.danger};
   font-size: ${RFValue(12)}px;
   font-family: ${({ theme }) => theme.fonts.light};
-  height: ${RFValue(14)}px;
+  height: ${RFValue(16)}px;
   margin-left: 2px;
 `;

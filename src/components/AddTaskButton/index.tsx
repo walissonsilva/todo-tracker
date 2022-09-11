@@ -12,7 +12,9 @@ export function AddTaskButton({ children, ...rest }: AddTaskButtonProps) {
       {...rest}
       onPress={() => navigation.navigate("RegisterModal" as never)}
     >
-      <S.AddTaskIcon name="plus" />
+      <S.AddTaskWrapper>
+        <S.AddTaskIcon name="plus" />
+      </S.AddTaskWrapper>
     </S.AddTask>
   );
 }
