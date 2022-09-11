@@ -1,27 +1,34 @@
 import { useMemo, useState } from "react";
-import { Modal, Text } from "react-native";
-import { Input, InputProps } from "../Input/Input";
+import { Modal } from "react-native";
 import { Calendar } from "react-native-calendars";
+import { Input, InputProps } from "../Input/Input";
 
-import * as S from "./styles";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { Header } from "../../Header";
+import { useTheme } from "styled-components";
 import { Button } from "../../Button/Button";
+import { Header } from "../../Header";
+import * as S from "./styles";
 
-interface InputDateProps extends InputProps {}
+interface InputDateProps extends InputProps {
+  selectedDate: string;
+  onChangeDate: (date: string) => void;
+}
 
-export function InputDate(props: InputDateProps) {
+export function InputDate({
+  selectedDate,
+  onChangeDate,
+  ...props
+}: InputDateProps) {
+  const theme = useTheme();
   const [isModalSelectDateOpen, setIsModalSelectDateOpen] = useState(false);
-  const [dateSelected, setDateSelected] = useState("");
 
   const formattedDateSelected = useMemo(() => {
-    if (dateSelected) {
-      const [year, month, day] = dateSelected.split("-");
+    if (selectedDate) {
+      const [year, month, day] = selectedDate.split("-");
       return `${day}/${month}/${year}`;
     }
 
     return "";
-  }, [dateSelected]);
+  }, [selectedDate]);
 
   function toggleModal() {
     setIsModalSelectDateOpen(!isModalSelectDateOpen);
@@ -31,19 +38,46 @@ export function InputDate(props: InputDateProps) {
     <S.Container onPress={toggleModal} activeOpacity={0.7}>
       <Input {...props} value={formattedDateSelected} editable={false} />
 
-      <Modal visible={isModalSelectDateOpen}>
-        <Header
-          title="Selecione uma data"
-          goBackIcon={{ show: true, action: toggleModal }}
-        />
+      <Modal
+        presentationStyle="overFullScreen"
+        transparent
+        visible={false}
+        statusBarTranslucent
+        removeClippedSubviews
+      ></Modal>
+
+      <S.StyledModal
+        visible={isModalSelectDateOpen}
+        animationType="slide"
+        onRequestClose={toggleModal}
+        presentationStyle="overFullScreen"
+        transparent
+        removeClippedSubviews
+        style={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <S.ModalContent>
+          <Header
+            title="Selecione uma data"
+            goBackIcon={{ show: true, action: toggleModal }}
+          />
           <S.CalendarWrapper>
             <Calendar
+              theme={{
+                calendarBackground: theme.colors["background-variant"],
+                selectedDayTextColor: theme.colors["text-color"],
+                selectedDayBackgroundColor: theme.colors["primary"],
+                monthTextColor: theme.colors["text-color"],
+                dayTextColor: theme.colors["text-color"],
+                todayTextColor: theme.colors["primary-variant"],
+                arrowColor: theme.colors["text-color"],
+              }}
               focusable
               markedDates={{
-                [dateSelected]: { selected: true },
+                [selectedDate]: { selected: true },
               }}
-              onDayPress={(date) => setDateSelected(date.dateString)}
+              onDayPress={(date) => onChangeDate(date.dateString)}
             />
           </S.CalendarWrapper>
 
@@ -51,7 +85,7 @@ export function InputDate(props: InputDateProps) {
             <Button onPress={toggleModal}>Confirmar</Button>
           </S.ButtonWrapper>
         </S.ModalContent>
-      </Modal>
+      </S.StyledModal>
     </S.Container>
   );
 }

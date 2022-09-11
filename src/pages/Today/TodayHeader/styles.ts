@@ -5,7 +5,7 @@ export const Container = styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   padding: 44px 30px 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-left-radius: 30px;
 `;
 
 export const UserSection = styled.View`
@@ -26,7 +26,7 @@ export const WelcomeMessage = styled.Text`
 export const InfoMessage = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors["text-color-inverted-lighten"]};
+  color: ${({ theme }) => theme.colors["white-100"]};
 `;
 
 export const ProfileImage = styled.Image`

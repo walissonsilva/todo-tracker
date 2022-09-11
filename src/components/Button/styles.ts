@@ -18,15 +18,15 @@ export const Container = styled.TouchableOpacity<ContainerProps>`
     type === "outline" &&
     css`
       background-color: transparent;
-      border: 1px solid ${theme.colors.primary};
+      border: 1px solid ${theme.colors["primary-variant"]};
     `}
 `;
 
 export const ButtonText = styled.Text<ContainerProps>`
   color: ${({ theme, type }) =>
     type === "default"
-      ? theme.colors["text-color-inverted"]
-      : theme.colors.primary};
+      ? theme.colors["white"]
+      : theme.colors["primary-variant"]};
   font-size: ${RFValue(16)}px;
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.semi_bold};

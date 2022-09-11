@@ -12,7 +12,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  color: ${({ theme }) => theme.colors["text-color-inverted"]};
+  color: ${({ theme }) => theme.colors["white"]};
   font-size: ${RFValue(20)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
 `;
@@ -22,6 +22,6 @@ export const IconWrapper = styled.TouchableOpacity`
 `;
 
 export const Icon = styled(Feather)`
-  color: ${({ theme }) => theme.colors["text-color-inverted-lighten"]};
+  color: ${({ theme }) => theme.colors.white};
   font-size: ${RFValue(16)}px;
 `;

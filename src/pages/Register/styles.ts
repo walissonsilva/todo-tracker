@@ -12,7 +12,9 @@ export const ContentContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const InputsWrapper = styled.View``;
+export const InputsWrapper = styled.View`
+  margin-top: 8px;
+`;
 export const ButtonsWrapper = styled.View``;
 export const ButtonContainer = styled.View`
   margin-top: 10px;

@@ -14,21 +14,21 @@ export default {
     danger_light: "rgba(232, 63, 91, 0.5)",
     warning: "#FB8B24",
 
-    shape: "#242424",
+    shape: "#FFFFFF",
     title: "#363F5F",
 
-    "text-color-inverted": "#0E0E10",
-    "text-color-inverted-lighten": "#333333",
-    "text-color": "#F2F2F2",
-    "text-color-lighten": "#C5C5C5",
+    "text-color": "#0E0E10",
+    "text-color-lighten": "#333333",
+    "text-color-inverted": "#F2F2F2",
+    "text-color-inverted-lighten": "#C5C5C5",
 
     white: "#FFFFFF",
     "white-100": "#C5C5C5",
 
     black: "#000000",
 
-    background: "#181818",
-    "background-variant": "#222222",
+    background: "#E9E9E9",
+    "background-variant": "#FFFFFF",
   },
   fonts: {
     light: "Cairo-Light",

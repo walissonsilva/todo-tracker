@@ -8,6 +8,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components/native";
 import { AppRoutes } from "./src/routes/app.routes";
 import mainTheme from "./src/styles/themes/main";
+import lightTheme from "./src/styles/themes/light";
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -36,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={mainTheme}>
+    <ThemeProvider theme={lightTheme}>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <AppRoutes />
         <StatusBar style="light" />

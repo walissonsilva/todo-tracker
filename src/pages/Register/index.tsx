@@ -1,12 +1,13 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
   Controller,
   FieldValues,
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { Alert } from "react-native";
 import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { InputDate } from "../../components/Form/InputDate";
@@ -18,11 +19,11 @@ import * as S from "./styles";
 interface FormData {
   title: string;
   category: string;
-  date: string;
 }
 
 export function RegisterScreen() {
   const navigation = useNavigation();
+  const [date, setDate] = useState("");
   const {
     control,
     handleSubmit,
@@ -32,6 +33,13 @@ export function RegisterScreen() {
   });
 
   const handleAddNewTask: SubmitHandler<FieldValues | FormData> = (data) => {
+    if (!date) {
+      Alert.alert(
+        "Formulário imcompleto",
+        "Defina uma data para a sua tarefa."
+      );
+    }
+
     console.log(data);
   };
 
@@ -72,21 +80,10 @@ export function RegisterScreen() {
             )}
             name="category"
           />
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <InputDate
-                label="Data"
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                error={errors.date?.message}
-              />
-            )}
-            name="date"
+          <InputDate
+            label="Data"
+            selectedDate={date}
+            onChangeDate={(date: string) => setDate(date)}
           />
         </S.InputsWrapper>
 

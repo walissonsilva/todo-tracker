@@ -21,14 +21,15 @@ export function AppTabs() {
   return (
     <Navigator
       screenOptions={{
-        tabBarActiveBackgroundColor: theme.colors.background,
-        tabBarInactiveBackgroundColor: theme.colors.background,
+        tabBarActiveBackgroundColor: theme.colors["background-variant"],
+        tabBarInactiveBackgroundColor: theme.colors["background-variant"],
+        tabBarActiveTintColor: theme.colors["primary-variant"],
         tabBarStyle: {
           borderTopWidth: 0,
           height: RFValue(46),
           paddingBottom: 7,
           paddingTop: 7,
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.colors["background-variant"],
         },
       }}
     >
@@ -36,7 +37,6 @@ export function AppTabs() {
         name="Hoje"
         component={TodayScreen}
         options={{
-          tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
           tabBarIcon: (props) => (
             <Feather name="list" {...props} size={props.size - 5} />
@@ -47,7 +47,6 @@ export function AppTabs() {
         name="Próximas"
         component={UpcomingScreen}
         options={{
-          tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
           tabBarIcon: (props) => (
             <Feather name="calendar" {...props} size={props.size - 5} />
@@ -58,7 +57,6 @@ export function AppTabs() {
         name="Estatísticas"
         component={StatsScreen}
         options={{
-          tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
           tabBarIcon: (props) => (
             <Feather name="bar-chart-2" {...props} size={props.size - 5} />
@@ -69,7 +67,6 @@ export function AppTabs() {
         name="Perfil"
         component={ProfileScreen}
         options={{
-          tabBarActiveTintColor: theme.colors.primary,
           headerShown: false,
           tabBarIcon: (props) => (
             <Feather name="user" {...props} size={props.size - 5} />

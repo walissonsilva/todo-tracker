@@ -9,7 +9,7 @@ export const Container = styled.View`
 export const Label = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${({ theme }) => theme.colors["text-color-ligthen"]};
+  color: ${({ theme }) => theme.colors["text-color-lighten"]};
   margin-bottom: 6px;
 `;
 
@@ -17,8 +17,9 @@ export const Input = styled.TextInput`
   border-radius: 5px;
   height: ${RFValue(44)}px;
   padding: 0 14px;
-  background-color: ${({ theme }) => theme.colors.white};
-  border: 1px solid ${({ theme }) => theme.colors["primary-ligthen"] + "44"};
+  background-color: ${({ theme }) => theme.colors.shape};
+  border: 1px solid ${({ theme }) => theme.colors["white-100"] + "44"};
+  color: ${({ theme }) => theme.colors["text-color"]};
 `;
 
 export const ErrorMessage = styled.Text`
