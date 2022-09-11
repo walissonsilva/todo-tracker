@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Controller,
   FieldValues,
@@ -12,13 +12,14 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { InputDate } from "../../components/Form/InputDate";
 import { Header } from "../../components/Header";
-import { Toast } from "../../components/Toast";
 import { useTasks } from "../../hooks/useTasks";
-import { convertFormattedToISODate } from "../../utils/date";
 import { showToast } from "../../utils/toast";
 import { taskSchema } from "./schema";
+import { Picker } from "@react-native-picker/picker";
 
 import * as S from "./styles";
+import { categories } from "../../constants/categories";
+import { Select } from "../../components/Form/Select";
 
 interface FormData {
   title: string;
@@ -29,6 +30,7 @@ export function RegisterScreen() {
   const { createTask } = useTasks();
   const navigation = useNavigation();
   const [date, setDate] = useState("");
+  const [category, setCategory] = useState("");
   const {
     control,
     handleSubmit,
@@ -36,6 +38,13 @@ export function RegisterScreen() {
   } = useForm<FormData>({
     resolver: yupResolver(taskSchema),
   });
+
+  const selectOptions = useMemo(() => {
+    return categories.map((category) => ({
+      value: category.key,
+      label: category.label,
+    }));
+  }, [categories]);
 
   const handleAddNewTask: SubmitHandler<FieldValues | FormData> = (data) => {
     if (!date) {
@@ -80,11 +89,12 @@ export function RegisterScreen() {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <Input
+              <Select
                 label="Categoria"
                 onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
+                options={selectOptions}
+                selectedValue={value}
+                onValueChange={onChange}
                 error={errors.category?.message}
               />
             )}
