@@ -12,6 +12,10 @@ import { Button } from "../../components/Button/Button";
 import { Input } from "../../components/Form/Input/Input";
 import { InputDate } from "../../components/Form/InputDate";
 import { Header } from "../../components/Header";
+import { Toast } from "../../components/Toast";
+import { useTasks } from "../../hooks/useTasks";
+import { convertFormattedToISODate } from "../../utils/date";
+import { showToast } from "../../utils/toast";
 import { taskSchema } from "./schema";
 
 import * as S from "./styles";
@@ -22,6 +26,7 @@ interface FormData {
 }
 
 export function RegisterScreen() {
+  const { createTask } = useTasks();
   const navigation = useNavigation();
   const [date, setDate] = useState("");
   const {
@@ -40,7 +45,12 @@ export function RegisterScreen() {
       );
     }
 
-    console.log(data);
+    const { title, category } = data;
+    const dateISO = new Date(date).toISOString();
+
+    createTask(title, category, dateISO);
+    showToast("success", "Tarefa adicionada", "Adicionada com sucesso!");
+    navigation.navigate("Hoje" as never);
   };
 
   return (

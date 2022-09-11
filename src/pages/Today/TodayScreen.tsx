@@ -1,9 +1,12 @@
 import React from "react";
 import { AddTaskButton } from "../../components/AddTaskButton";
+import { useTasks } from "../../hooks/useTasks";
 import * as S from "./styles";
 import { Header } from "./TodayHeader/TodayHeader";
 
 export function TodayScreen() {
+  const { tasks } = useTasks();
+
   return (
     <S.Container>
       <Header />
@@ -15,14 +18,10 @@ export function TodayScreen() {
 
         <S.TodayTodoContainer showsVerticalScrollIndicator={false}>
           <S.TodayListWrapper>
-            {Array.from({ length: 20 }).map((_, index) => (
-              <S.TodayTodoItem>
+            {tasks.map((task) => (
+              <S.TodayTodoItem key={task.id}>
                 <S.TodayTodoContent>
-                  <S.TodoTitle>
-                    {index + 1}
-                    Um nome enorme para essa tarefa somenteabc para testar como
-                    vai ficar
-                  </S.TodoTitle>
+                  <S.TodoTitle>{task.title}</S.TodoTitle>
                 </S.TodayTodoContent>
               </S.TodayTodoItem>
             ))}

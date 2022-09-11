@@ -45,9 +45,11 @@ export const TodayTodoItem = styled.View`
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
+  padding: 5px 0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: ${({ theme }) => theme.colors.primary + "11"};
+  border-bottom-color: ${({ theme }) =>
+    theme.colors["text-color-lighten"] + "33"};
 `;
 
 export const TodayTodoContent = styled(RectButton)`
