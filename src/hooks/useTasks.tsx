@@ -1,9 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import { isBefore, isToday, startOfDay } from "date-fns";
+import React, { createContext, useContext, useMemo, useState } from "react";
+import {
+  createTaskOnAPI,
+  deleteTaskOnAPI,
+  getTasksOnAPI,
+} from "../services/tasks";
 import { ITask } from "../types/task";
 
 interface TasksContextData {
   tasks: ITask[];
-  createTask: (title: string, category: string, date: string) => void;
+  todayTasks: ITask[];
+  overdueTasks: ITask[];
+  loadTasks: () => Promise<void>;
+  createTask: (title: string, category: string, date: Date) => Promise<void>;
+  deleteTask: (taskId: number) => Promise<void>;
 }
 
 const TasksContext = createContext({} as TasksContextData);
@@ -13,36 +23,52 @@ interface TasksProviderProps {
 }
 
 export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      title: "Primeira tarefa",
-      category: "Categoria",
-      date: new Date().toISOString(),
-      isDone: false,
-    },
-  ] as ITask[]);
+  const [tasks, setTasks] = useState([] as ITask[]);
 
-  function createTask(title: string, category: string, date: string) {
-    const newTasks = [
-      ...tasks,
-      {
-        id: new Date().getTime(),
-        title,
-        category,
-        date,
-        isDone: false,
-      },
-    ];
+  const todayTasks = useMemo(() => {
+    return tasks.filter((task) => isToday(task.date));
+  }, [tasks]);
+
+  const overdueTasks = useMemo(() => {
+    return tasks.filter((task) => isBefore(task.date, startOfDay(new Date())));
+  }, [tasks]);
+
+  async function loadTasks() {
+    const tasksLoaded = await getTasksOnAPI();
+    setTasks(tasksLoaded);
+  }
+
+  async function createTask(title: string, category: string, date: Date) {
+    const newTask = {
+      id: new Date().getTime(),
+      title,
+      category,
+      date,
+      isDone: false,
+    };
+
+    const newTasks = [...tasks, newTask];
 
     setTasks(newTasks);
+    await createTaskOnAPI(newTask);
+  }
+
+  async function deleteTask(taskId: number) {
+    const filteredTasks = tasks.filter((task) => taskId === task.id);
+
+    setTasks(filteredTasks);
+    await deleteTaskOnAPI(taskId);
   }
 
   return (
     <TasksContext.Provider
       value={{
         tasks,
+        loadTasks,
         createTask,
+        deleteTask,
+        todayTasks,
+        overdueTasks,
       }}
     >
       {children}

@@ -15,11 +15,11 @@ import { Header } from "../../components/Header";
 import { useTasks } from "../../hooks/useTasks";
 import { showToast } from "../../utils/toast";
 import { taskSchema } from "./schema";
-import { Picker } from "@react-native-picker/picker";
 
-import * as S from "./styles";
-import { categories } from "../../constants/categories";
 import { Select } from "../../components/Form/Select";
+import { categories } from "../../constants/categories";
+import * as S from "./styles";
+import { addHours, intlFormat } from "date-fns";
 
 interface FormData {
   title: string;
@@ -30,7 +30,6 @@ export function RegisterScreen() {
   const { createTask } = useTasks();
   const navigation = useNavigation();
   const [date, setDate] = useState("");
-  const [category, setCategory] = useState("");
   const {
     control,
     handleSubmit,
@@ -46,7 +45,9 @@ export function RegisterScreen() {
     }));
   }, [categories]);
 
-  const handleAddNewTask: SubmitHandler<FieldValues | FormData> = (data) => {
+  const handleAddNewTask: SubmitHandler<FieldValues | FormData> = async (
+    data
+  ) => {
     if (!date) {
       Alert.alert(
         "Formulário imcompleto",
@@ -55,9 +56,11 @@ export function RegisterScreen() {
     }
 
     const { title, category } = data;
-    const dateISO = new Date(date).toISOString();
+    const utcDate = new Date(`${date}`);
+    const now = new Date();
+    const utcTimeOffset = now.getTimezoneOffset() / 60;
 
-    createTask(title, category, dateISO);
+    await createTask(title, category, addHours(utcDate, utcTimeOffset));
     showToast("success", "Tarefa adicionada", "Adicionada com sucesso!");
     navigation.navigate("Hoje" as never);
   };

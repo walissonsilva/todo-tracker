@@ -9,6 +9,6 @@ export const showToast = (
     type,
     text1: title,
     text2: message,
-    position: "bottom",
+    position: "top",
   });
 };
