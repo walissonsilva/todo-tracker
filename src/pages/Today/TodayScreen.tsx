@@ -3,6 +3,7 @@ import { AddTaskButton } from "../../components/AddTaskButton";
 import { useTasks } from "../../hooks/useTasks";
 import * as S from "./styles";
 import { Header } from "./TodayHeader/TodayHeader";
+import { TodoItem } from "./TodoItem/TodoItem";
 
 export function TodayScreen() {
   const { todayTasks, overdueTasks, loadTasks } = useTasks();
@@ -16,38 +17,14 @@ export function TodayScreen() {
       <Header />
 
       <S.PageContent>
-        {overdueTasks.length ? (
-          <>
-            <S.TodayWrapper>
-              <S.TodayTitle>Atrasadas</S.TodayTitle>
-            </S.TodayWrapper>
-
-            <S.TodayTodoContainer showsVerticalScrollIndicator={false}>
-              <S.TodayListWrapper>
-                {overdueTasks.map((task) => (
-                  <S.TodayTodoItem key={task.id}>
-                    <S.TodayTodoContent>
-                      <S.TodoTitle>{task.title}</S.TodoTitle>
-                    </S.TodayTodoContent>
-                  </S.TodayTodoItem>
-                ))}
-              </S.TodayListWrapper>
-            </S.TodayTodoContainer>
-          </>
-        ) : null}
-
         <S.TodayWrapper>
-          <S.TodayTitle>Hoje</S.TodayTitle>
+          <S.TodayTitle>Suas Tarefas</S.TodayTitle>
         </S.TodayWrapper>
 
         <S.TodayTodoContainer showsVerticalScrollIndicator={false}>
           <S.TodayListWrapper>
-            {todayTasks.map((task) => (
-              <S.TodayTodoItem key={task.id}>
-                <S.TodayTodoContent>
-                  <S.TodoTitle>{task.title}</S.TodoTitle>
-                </S.TodayTodoContent>
-              </S.TodayTodoItem>
+            {[...overdueTasks, ...todayTasks].map((task) => (
+              <TodoItem key={task.id} {...task} />
             ))}
           </S.TodayListWrapper>
         </S.TodayTodoContainer>

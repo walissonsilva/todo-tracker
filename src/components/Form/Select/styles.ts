@@ -3,7 +3,7 @@ import { Picker } from "@react-native-picker/picker";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export const PickerWrapper = styled.View`
-  padding: 0 10px;
+  padding: 0 6px;
   background-color: ${({ theme }) => theme.colors.shape};
   border-radius: 5px;
 `;

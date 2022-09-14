@@ -1,9 +1,9 @@
 import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import Feather from "react-native-vector-icons/Feather";
 
-export const AddTask = styled(RectButton)`
+export const AddTask = styled(TouchableOpacity)`
   position: absolute;
   bottom: ${RFValue(15)}px;
   right: ${RFValue(15)}px;

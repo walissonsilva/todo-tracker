@@ -22,7 +22,6 @@ export function Select({
   error,
   options,
   optionSelected,
-  onValueChange,
   ...rest
 }: SelectProps) {
   return (
@@ -30,8 +29,8 @@ export function Select({
       <Label>{label}</Label>
       <S.PickerWrapper>
         <S.StyledPicker
-          selectedValue={optionSelected}
-          onValueChange={onValueChange}
+          selectedValue={options[0].value}
+          placeholder="Selecione uma categoria..."
           {...rest}
         >
           {options.map((option) => (

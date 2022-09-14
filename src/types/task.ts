@@ -4,7 +4,7 @@ export interface ITask {
   category: string;
   date: Date;
   isDone: boolean;
-  startDateTime?: string;
-  endDateTime?: string;
+  startDateTime?: Date;
+  endDateTime?: Date;
   overdue?: boolean;
 }

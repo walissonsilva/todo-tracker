@@ -15,7 +15,7 @@ export function Header({ title, icon, onTopOfScreen = true }: HeaderProps) {
   return (
     <S.Container onTopOfScreen={onTopOfScreen}>
       {icon && (
-        <S.IconWrapper onPress={icon.action}>
+        <S.IconWrapper onPress={icon.action} activeOpacity={0.7}>
           <S.Icon name={icon.type === "back" ? "arrow-left" : "x"} />
         </S.IconWrapper>
       )}

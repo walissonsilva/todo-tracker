@@ -4,6 +4,7 @@ import {
   createTaskOnAPI,
   deleteTaskOnAPI,
   getTasksOnAPI,
+  updateTaskOnAPI,
 } from "../services/tasks";
 import { ITask } from "../types/task";
 
@@ -14,6 +15,7 @@ interface TasksContextData {
   loadTasks: () => Promise<void>;
   createTask: (title: string, category: string, date: Date) => Promise<void>;
   deleteTask: (taskId: number) => Promise<void>;
+  toggleTaskStatus: (taskId: number) => Promise<void>;
 }
 
 const TasksContext = createContext({} as TasksContextData);
@@ -26,11 +28,15 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState([] as ITask[]);
 
   const todayTasks = useMemo(() => {
-    return tasks.filter((task) => isToday(task.date));
+    const today = tasks.filter((task) => isToday(task.date));
+    return today.sort((a, b) => Number(a.isDone) - Number(b.isDone));
   }, [tasks]);
 
   const overdueTasks = useMemo(() => {
-    return tasks.filter((task) => isBefore(task.date, startOfDay(new Date())));
+    const tasksBeforeToday = tasks.filter(
+      (task) => isBefore(task.date, startOfDay(new Date())) && !task.isDone
+    );
+    return tasksBeforeToday.map((task) => ({ ...task, overdue: true }));
   }, [tasks]);
 
   async function loadTasks() {
@@ -54,10 +60,34 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
   }
 
   async function deleteTask(taskId: number) {
-    const filteredTasks = tasks.filter((task) => taskId === task.id);
+    const filteredTasks = tasks.filter((task) => taskId !== task.id);
 
     setTasks(filteredTasks);
     await deleteTaskOnAPI(taskId);
+  }
+
+  async function toggleTaskStatus(taskId: number) {
+    const newTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        const newStatus = !task.isDone;
+        return {
+          ...task,
+          endDateTime: newStatus ? new Date() : undefined,
+          startDateTime: newStatus ? task.startDateTime : undefined,
+          isDone: !task.isDone,
+        };
+      }
+      return task;
+    });
+
+    setTasks(newTasks);
+
+    const taskToUpdate = tasks.find((task) => task.id === taskId);
+    const taskUpdated = {
+      ...taskToUpdate,
+      isDone: !taskToUpdate?.isDone,
+    };
+    updateTaskOnAPI(taskUpdated as ITask);
   }
 
   return (
@@ -67,6 +97,7 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
         loadTasks,
         createTask,
         deleteTask,
+        toggleTaskStatus,
         todayTasks,
         overdueTasks,
       }}

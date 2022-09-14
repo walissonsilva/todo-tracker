@@ -1,9 +1,7 @@
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import styled, { css } from "styled-components/native";
+import { RFValue } from "react-native-responsive-fontsize";
+import styled from "styled-components/native";
 
 import Feather from "react-native-vector-icons/Feather";
-import { RectButton } from "react-native-gesture-handler";
-import { getTabBarHeight } from "@react-navigation/bottom-tabs/lib/typescript/src/views/BottomTabBar";
 
 export const Container = styled.View`
   flex: 1;
@@ -38,35 +36,4 @@ export const TodayTodoContainer = styled.ScrollView`
 
 export const TodayListWrapper = styled.View`
   height: 100%;
-`;
-
-export const TodayTodoItem = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 5px;
-  padding: 5px 0;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom-color: ${({ theme }) =>
-    theme.colors["text-color-lighten"] + "33"};
-`;
-
-export const TodayTodoContent = styled(RectButton)`
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  padding: 7px 10px;
-`;
-
-export const TodoTitle = styled.Text`
-  font-size: ${RFValue(15)}px;
-  color: ${({ theme }) => theme.colors["text-color"]};
-  font-family: ${({ theme }) => theme.fonts.regular};
-`;
-
-export const TodayTodoControls = styled.View`
-  flex-direction: row;
-  align-items: center;
 `;

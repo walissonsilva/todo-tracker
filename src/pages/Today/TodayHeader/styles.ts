@@ -15,18 +15,22 @@ export const UserSection = styled.View`
   height: ${RFPercentage(12)}px;
 `;
 
-export const UserMessageWrapper = styled.View``;
+export const UserMessageWrapper = styled.View`
+  flex: 1;
+`;
 
 export const WelcomeMessage = styled.Text`
   font-size: ${RFValue(20)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
   color: ${({ theme }) => theme.colors.white};
+  margin-bottom: 5px;
 `;
 
 export const InfoMessage = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors["white-100"]};
+  line-height: ${RFValue(17)}px;
 `;
 
 export const ProfileImage = styled.Image`
@@ -34,4 +38,5 @@ export const ProfileImage = styled.Image`
   height: ${RFValue(50)}px;
   border-radius: 5px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  margin-left: 20px;
 `;

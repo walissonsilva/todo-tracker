@@ -22,6 +22,19 @@ export async function createTaskOnAPI(task: ITask): Promise<void> {
 
 export async function deleteTaskOnAPI(taskId: number): Promise<void> {
   const tasks = await getTasksOnAPI();
-  const filteredTasks = tasks.filter((task) => taskId === task.id);
+  const filteredTasks = tasks.filter((task) => taskId !== task.id);
   await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(filteredTasks));
+}
+
+export async function updateTaskOnAPI(taskUpdated: ITask) {
+  const tasks = await getTasksOnAPI();
+  const newTasks = tasks.map((task) => {
+    if (task.id === taskUpdated.id) {
+      return taskUpdated;
+    }
+
+    return task;
+  });
+
+  await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(newTasks));
 }
