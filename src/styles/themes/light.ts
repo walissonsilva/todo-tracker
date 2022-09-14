@@ -2,9 +2,9 @@
 
 export default {
   colors: {
-    primary: "#344CB7",
-    "primary-variant": "#577BC1",
-    secondary: "#20A39E",
+    primary: "#3f3aaa",
+    "primary-variant": "#3f3aaa",
+    secondary: "#3b7430",
     "secondary-variant": "#b286c0",
     tertiary: "#EFCA08",
 
