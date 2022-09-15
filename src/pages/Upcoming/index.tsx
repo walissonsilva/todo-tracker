@@ -1,11 +1,12 @@
 import React from "react";
+import { Header } from "../../components/Header";
 
 import * as S from "./styles";
 
 export function UpcomingScreen() {
   return (
     <S.Container>
-      <S.Text>Upcoming</S.Text>
+      <Header title="Próximas tarefas" onTopOfScreen />
     </S.Container>
   );
 }

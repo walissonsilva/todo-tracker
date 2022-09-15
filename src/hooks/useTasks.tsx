@@ -1,5 +1,11 @@
 import { isBefore, isToday, startOfDay } from "date-fns";
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
 import {
   createTaskOnAPI,
   deleteTaskOnAPI,
@@ -16,6 +22,8 @@ interface TasksContextData {
   createTask: (title: string, category: string, date: Date) => Promise<void>;
   deleteTask: (taskId: number) => Promise<void>;
   toggleTaskStatus: (taskId: number) => Promise<void>;
+  selectedTaskId: number | undefined;
+  updateSelectedTaskId: (taskId?: number) => void;
 }
 
 const TasksContext = createContext({} as TasksContextData);
@@ -25,6 +33,9 @@ interface TasksProviderProps {
 }
 
 export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
+  const [selectedTaskId, setTaskSelectedId] = useState<number | undefined>(
+    undefined
+  );
   const [tasks, setTasks] = useState([] as ITask[]);
 
   const todayTasks = useMemo(() => {
@@ -90,6 +101,13 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     updateTaskOnAPI(taskUpdated as ITask);
   }
 
+  const updateSelectedTaskId = useCallback(
+    (taskId?: number) => {
+      setTaskSelectedId(taskId);
+    },
+    [setTaskSelectedId]
+  );
+
   return (
     <TasksContext.Provider
       value={{
@@ -100,6 +118,8 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
         toggleTaskStatus,
         todayTasks,
         overdueTasks,
+        selectedTaskId,
+        updateSelectedTaskId,
       }}
     >
       {children}

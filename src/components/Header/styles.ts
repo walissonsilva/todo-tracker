@@ -1,5 +1,5 @@
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 
 import Feather from "react-native-vector-icons/Feather";
 
@@ -14,6 +14,13 @@ export const Container = styled.View<ContainerProps>`
   flex-direction: row;
   align-items: center;
   padding: ${({ onTopOfScreen }) => (onTopOfScreen ? "30px 30px 0" : "0 30px")};
+
+  ${({ onTopOfScreen }) =>
+    !onTopOfScreen &&
+    css`
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    `}
 `;
 
 export const Title = styled.Text`

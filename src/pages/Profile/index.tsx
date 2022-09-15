@@ -1,11 +1,12 @@
 import React from "react";
+import { Header } from "../../components/Header";
 
 import * as S from "./styles";
 
 export function ProfileScreen() {
   return (
     <S.Container>
-      <S.Text>Perfil</S.Text>
+      <Header title="Perfil" />
     </S.Container>
   );
 }
