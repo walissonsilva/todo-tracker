@@ -6,14 +6,14 @@ import { useTasks } from "../../hooks/useTasks";
 import * as S from "./styles";
 
 export function UpcomingScreen() {
-  const { upcomingTasks, todayTasks } = useTasks();
+  const { upcomingTasks } = useTasks();
 
   return (
     <S.Container>
       <Header title="Próximas tarefas" onTopOfScreen />
 
       <S.PageContent>
-        <TasksList tasks={[...upcomingTasks, ...todayTasks]} showTasksDate />
+        <TasksList tasks={upcomingTasks} showTasksDate />
       </S.PageContent>
     </S.Container>
   );
