@@ -2,7 +2,7 @@ import { useState } from "react";
 import { categories } from "../../../constants/categories";
 import { useTasks } from "../../../hooks/useTasks";
 import { ITask } from "../../../types/task";
-import { TaskDetailsModal } from "../TaskDetailsModal/TaskDetailsModal";
+import { TaskDetailsModal } from "../TaskControlsDropdown/TaskControlsDropdown";
 import * as S from "./styles";
 
 interface TodoItemProps extends ITask {}
