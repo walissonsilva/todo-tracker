@@ -1,13 +1,15 @@
-import { useState } from "react";
 import { categories } from "../../../constants/categories";
 import { useTasks } from "../../../hooks/useTasks";
 import { ITask } from "../../../types/task";
+import { formatDate } from "../../../utils/date";
 import { TaskDetailsModal } from "../TaskControlsDropdown/TaskControlsDropdown";
 import * as S from "./styles";
 
-interface TodoItemProps extends ITask {}
+interface TaskItemProps extends ITask {
+  showTaskDate?: boolean;
+}
 
-export function TodoItem({ ...task }: TodoItemProps) {
+export function TaskItem({ showTaskDate = false, ...task }: TaskItemProps) {
   const { toggleTaskStatus, updateSelectedTaskId, selectedTaskId } = useTasks();
   const categoryDetails = categories.find((c) => c.key === task.category);
 
@@ -48,6 +50,9 @@ export function TodoItem({ ...task }: TodoItemProps) {
                 {categoryDetails?.label}
               </S.TaskCategory>
             </S.CategoryWrapper>
+            <S.TaskDateText>
+              {showTaskDate ? formatDate(task.date) : ""}
+            </S.TaskDateText>
             <S.TaskOverdueText>
               {task.overdue ? "Atrasada" : ""}
             </S.TaskOverdueText>

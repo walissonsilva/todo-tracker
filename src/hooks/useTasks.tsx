@@ -1,4 +1,4 @@
-import { isBefore, isToday, startOfDay } from "date-fns";
+import { isAfter, isBefore, isToday, startOfDay } from "date-fns";
 import React, {
   createContext,
   useCallback,
@@ -18,6 +18,7 @@ interface TasksContextData {
   tasks: ITask[];
   todayTasks: ITask[];
   overdueTasks: ITask[];
+  upcomingTasks: ITask[];
   loadTasks: () => Promise<void>;
   createTask: (title: string, category: string, date: Date) => Promise<void>;
   deleteTask: (taskId: number) => Promise<void>;
@@ -39,7 +40,13 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
   const [tasks, setTasks] = useState([] as ITask[]);
 
   const todayTasks = useMemo(() => {
-    const today = tasks.filter((task) => isToday(task.date));
+    const today = tasks.filter((task) => {
+      const checkedAsDoneToday = task.endDateTime
+        ? isToday(task.endDateTime)
+        : false;
+      return isToday(task.date) || checkedAsDoneToday;
+    });
+
     return today.sort((a, b) => Number(a.isDone) - Number(b.isDone));
   }, [tasks]);
 
@@ -47,7 +54,15 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
     const tasksBeforeToday = tasks.filter(
       (task) => isBefore(task.date, startOfDay(new Date())) && !task.isDone
     );
+
     return tasksBeforeToday.map((task) => ({ ...task, overdue: true }));
+  }, [tasks]);
+
+  const upcomingTasks = useMemo(() => {
+    const tasksBeforeToday = tasks.filter(
+      (task) => isAfter(task.date, startOfDay(new Date())) && !task.isDone
+    );
+    return tasksBeforeToday.map((task) => ({ ...task }));
   }, [tasks]);
 
   async function loadTasks() {
@@ -118,6 +133,7 @@ export const TasksProvider: React.FC<TasksProviderProps> = ({ children }) => {
         toggleTaskStatus,
         todayTasks,
         overdueTasks,
+        upcomingTasks,
         selectedTaskId,
         updateSelectedTaskId,
       }}

@@ -1,11 +1,9 @@
 import React from "react";
 import { ITask } from "../../../types/task";
-import { formatDate, getDayOfWeek } from "../../../utils/date";
-
-import { ICategory } from "../../../types/category";
-import * as S from "./styles";
-import { useTasks } from "../../../hooks/useTasks";
 import { Alert } from "react-native";
+import { useTasks } from "../../../hooks/useTasks";
+
+import * as S from "./styles";
 
 interface TaskDetailsModalProps {
   isOpen: boolean;

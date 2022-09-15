@@ -90,6 +90,12 @@ export const TaskOverdueText = styled.Text`
   font-family: ${({ theme }) => theme.fonts.semi_bold};
 `;
 
+export const TaskDateText = styled.Text`
+  font-size: ${RFValue(12)}px;
+  color: ${({ theme }) => theme.colors["text-color"]};
+  font-family: ${({ theme }) => theme.fonts.medium};
+`;
+
 export const CategoryWrapper = styled.View`
   flex-direction: row;
   align-items: center;

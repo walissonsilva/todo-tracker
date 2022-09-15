@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { AddTaskButton } from "../../components/AddTaskButton";
+import { TasksList } from "../../components/TasksList";
 import { useTasks } from "../../hooks/useTasks";
-import * as S from "./styles";
 import { Header } from "./TodayHeader/TodayHeader";
-import { TodoItem } from "./TodoItem/TodoItem";
+
+import * as S from "./styles";
 
 export function TodayScreen() {
   const { todayTasks, overdueTasks, loadTasks } = useTasks();
@@ -21,13 +22,7 @@ export function TodayScreen() {
           <S.TodayTitle>Suas Tarefas</S.TodayTitle>
         </S.TodayWrapper>
 
-        <S.TodayTodoContainer showsVerticalScrollIndicator={false}>
-          <S.TodayListWrapper>
-            {[...overdueTasks, ...todayTasks].map((task) => (
-              <TodoItem key={task.id} {...task} />
-            ))}
-          </S.TodayListWrapper>
-        </S.TodayTodoContainer>
+        <TasksList tasks={[...overdueTasks, ...todayTasks]} />
 
         <AddTaskButton />
       </S.PageContent>
